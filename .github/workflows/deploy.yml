@@ -34,7 +34,7 @@ jobs:
       run:
         working-directory: ./backend
     env:
-      DATABASE_URL: postgres://postgres:postgres@localhostdb:5432/github-actions
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/github-actions
     services:
       postgres: # we need a postgres docker image to be booted a side car service to run the tests that needs a db
         image: postgres
