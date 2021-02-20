@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  frontend:
+    container_name: next-docker-dev
+    build: ./frontend
+    volumes:
+      - ./frontend:/frontend
+      - /frontend/node_modules
+      - /frontend/.next
+    ports:
+      - '3000:3000'
+
+  backend:
+    container_name: django-docker-dev
+    build: ./backend
+    volumes:
+      - ./backend:/backend
+      - /backend/.venv
+    ports:
+      - '8000:8000'
