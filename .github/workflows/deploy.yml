@@ -1,8 +1,8 @@
 name: Release to Production
 
 on:
-  schedule:
-    - cron: '0 2 * * *' # every 2:00 am everyday
+  release:
+    types: [published]
 
 jobs:
   build-frontend:
@@ -46,7 +46,7 @@ jobs:
         run: echo Hello, world!
 
   deploy-frontend-to-vercel:
-    needs: [run-e2e-cypress-test]
+    needs: [run-e2e-cypress]
     runs-on: ubuntu-20.04
 
     steps:
@@ -56,7 +56,7 @@ jobs:
         run: echo Hello, world!
 
   deploy-backend-to-heroku:
-    needs: [run-e2e-cypress-test]
+    needs: [run-e2e-cypress]
     runs-on: ubuntu-20.04
 
     steps:
