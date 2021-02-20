@@ -30,11 +30,6 @@ jobs:
 
   build-backend:
     runs-on: ubuntu-20.04
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: [3.9]
-        poetry-version: [1.1.4]
     defaults:
       run:
         working-directory: ./backend
@@ -55,16 +50,16 @@ jobs:
         uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 1.1.4
       - name: Run image
         uses: abatilo/actions-poetry@v2.0.0
         with:
-          poetry-version: ${{ matrix.poetry-version }}
-      - name: Install requirements # install application requirements
+          poetry-version: 1.1.4
+      - name: Install requirements
         run: poetry install --no-dev
-      - name: Run Migrations # run migrations to create table in side car db container
+      - name: Run Migrations
         run: poetry run python backend/manage.py migrate
-      - name: Run Test # running tests
+      - name: Run Test
         run: poetry run python backend/manage.py test
 
   run-e2e-cypress-test:
