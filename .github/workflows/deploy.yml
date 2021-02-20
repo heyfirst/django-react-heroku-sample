@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: frontend-build
-          path: build
+          path: ./build
 
   build-backend:
     runs-on: ubuntu-20.04
