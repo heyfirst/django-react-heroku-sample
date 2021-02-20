@@ -96,12 +96,12 @@ jobs:
   deploy-backend-to-heroku:
     needs: [run-e2e-cypress-test]
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./backend
-
+    environment: CI
     steps:
       - uses: actions/checkout@v2
-
-      - name: Deploy to Heroku!
-        run: echo Hello, world!
+      - uses: akhileshns/heroku-deploy@v3.11.10
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}'django-react-heroku-docker'
+          heroku_email: ${{secrets.HEROKU_EMAIL}}'kanisorns.k@gmail.com'
+          appdir: 'backend'
