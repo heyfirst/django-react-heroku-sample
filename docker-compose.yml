@@ -19,3 +19,15 @@ services:
       - /backend/.venv
     ports:
       - '8000:8000'
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgresisthebest@db:5432/helloworld
+  db:
+    container_name: postgres-docker-dev
+    image: postgres:12.6
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgresisthebest

@@ -1,4 +1,4 @@
-FROM python:3.9.2-slim
+FROM python:3.9.2
 
 ARG POETRY_VERSION=1.1.4
 
@@ -9,4 +9,4 @@ COPY . .
 
 RUN poetry install
 
-CMD ["poetry", "run", "python", "./backend/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["./entrypoint.sh"]
