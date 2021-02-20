@@ -27,64 +27,64 @@ jobs:
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         uses: actions/setup-node@v1
       - run: npm install
-      - run: npm run build
       - run: npm run test
-      - name: Archive production artifacts
+      - run: npm run build
+      - name: Archive Production Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: frontend-build
-          path: ./build
+          name: build
+          path: build
 
-  build-backend:
-    runs-on: ubuntu-20.04
+  # build-backend:
+  #   runs-on: ubuntu-20.04
 
-    steps:
-      - uses: actions/checkout@v2
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+  #     - name: Run a one-line script
+  #       run: echo Hello, world!
 
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+  #     - name: Run a multi-line script
+  #       run: |
+  #         echo Add other actions to build,
+  #         echo test, and deploy your project.
 
-  run-e2e-cypress-test:
-    needs: [build-frontend, build-backend]
-    runs-on: ubuntu-20.04
+  # run-e2e-cypress-test:
+  #   needs: [build-frontend, build-backend]
+  #   runs-on: ubuntu-20.04
 
-    steps:
-      - uses: actions/checkout@v2
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Sprint up frontend & backend
-        run: echo Hello, world!
+  #     - name: Sprint up frontend & backend
+  #       run: echo Hello, world!
 
-      - name: Run Cypress
-        run: echo Hello, world!
+  #     - name: Run Cypress
+  #       run: echo Hello, world!
 
-  deploy-frontend-to-vercel:
-    needs: [run-e2e-cypress-test]
-    runs-on: ubuntu-20.04
-    environment: CI
-    steps:
-      - name: Download Production Frontend Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: frontend-build
-      - uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-args: '--prod'
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
-          working-directory: ./build
+  # deploy-frontend-to-vercel:
+  #   needs: [run-e2e-cypress-test]
+  #   runs-on: ubuntu-20.04
+  #   environment: CI
+  #   steps:
+  #     - name: Download Production Frontend Artifact
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: frontend-build
+  #     - uses: amondnet/vercel-action@v20
+  #       with:
+  #         vercel-token: ${{ secrets.VERCEL_TOKEN }}
+  #         vercel-args: '--prod'
+  #         vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+  #         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+  #         working-directory: ./build
 
-  deploy-backend-to-heroku:
-    needs: [run-e2e-cypress-test]
-    runs-on: ubuntu-20.04
+  # deploy-backend-to-heroku:
+  #   needs: [run-e2e-cypress-test]
+  #   runs-on: ubuntu-20.04
 
-    steps:
-      - uses: actions/checkout@v2
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Deploy to Heroku!
-        run: echo Hello, world!
+  #     - name: Deploy to Heroku!
+  #       run: echo Hello, world!
