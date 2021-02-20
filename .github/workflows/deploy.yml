@@ -61,6 +61,7 @@ jobs:
   deploy-frontend-to-vercel:
     needs: [run-e2e-cypress-test]
     runs-on: ubuntu-20.04
+    environment: CI
     steps:
       - uses: actions/checkout@v2
       - uses: amondnet/vercel-action@v20
