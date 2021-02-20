@@ -1,8 +1,8 @@
 name: Release to Production
 
 on:
-  release:
-    types: [published]
+  schedule:
+    - cron: '0 2 * * *' # every 2:00 am everyday
 
 jobs:
   build-frontend:

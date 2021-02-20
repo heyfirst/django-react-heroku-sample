@@ -1,0 +1,20 @@
+name: Schedule DB Backend
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # every 2:00 am everyday
+
+jobs:
+  db-heroku-backup:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a backup
+        run: echo Hello, world!
+
+      - name: Run a backup with multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
