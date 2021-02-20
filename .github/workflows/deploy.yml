@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-  build:
+  build-frontend:
     runs-on: ubuntu-20.04
 
     steps:
@@ -18,3 +18,26 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+  build-backend:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+  deploy-to-prod:
+    needs: [build-frontend, build-backend]
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to Heroku!
+        run: echo Hello, world!
