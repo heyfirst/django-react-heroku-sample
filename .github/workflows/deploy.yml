@@ -32,8 +32,31 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-  deploy-to-prod:
+  run-e2e-cypress-test:
     needs: [build-frontend, build-backend]
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Sprint up frontend & backend
+        run: echo Hello, world!
+
+      - name: Run Cypress
+        run: echo Hello, world!
+
+  deploy-frontend-to-vercel:
+    needs: [run-e2e-cypress-test]
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to Heroku!
+        run: echo Hello, world!
+
+  deploy-backend-to-heroku:
+    needs: [run-e2e-cypress-test]
     runs-on: ubuntu-20.04
 
     steps:
