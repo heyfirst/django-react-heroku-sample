@@ -102,6 +102,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.11.10
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}'django-react-heroku-docker'
-          heroku_email: ${{secrets.HEROKU_EMAIL}}'kanisorns.k@gmail.com'
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
           appdir: 'backend'
